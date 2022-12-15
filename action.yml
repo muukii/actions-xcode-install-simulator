@@ -12,7 +12,7 @@ runs:
       id: cache-primes
       uses: actions/cache@v3
       with:
-        path: ~/Downloads
+        path: "./runtimes-archive"
         key: ${{ runner.os }}-runtimes-${{ inputs.ios_version }}
     - name: Install Xcodes
       shell: bash
@@ -21,4 +21,4 @@ runs:
         brew install robotsandpencils/made/xcodes
     - name: Install Simulator
       shell: bash
-      run: sudo xcodes runtimes install 'iOS ${{ inputs.ios_version }}'
+      run: sudo xcodes runtimes install --directory './runtimes-archive' --keep-archive 'iOS ${{ inputs.ios_version }}'

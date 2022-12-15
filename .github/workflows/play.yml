@@ -1,0 +1,23 @@
+name: Play
+
+on: [workflow_dispatch]
+
+jobs:
+  run:
+    runs-on: macos-12
+    strategy:
+      fail-fast: false
+      matrix:
+        xcode: ["14.1"]
+        ios_version: 
+          - '16.0'
+          - '15.4'
+          - '14.5'
+          - '13.7'
+    steps:
+      - uses: maxim-lobanov/setup-xcode@v1.1
+        with:
+          xcode-version: ${{ matrix.xcode }}
+      - uses: muukii/actions-xcode-install-simulator@main
+        with:
+          ios_version: ${{ matrix.ios_version }}

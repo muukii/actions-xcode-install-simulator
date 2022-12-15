@@ -1,10 +1,10 @@
-name: 'Xcode Install Simulator'
-description: 'Installs simulator for Xcode developers'
+name: "Xcode Install Simulator"
+description: "Installs simulator for Xcode developers"
 inputs:
-  ios_version: 
-    description: 'Version specifier'
+  ios_version:
+    description: "Version specifier"
     required: true
-    
+
 runs:
   using: "composite"
   steps:
@@ -15,4 +15,4 @@ runs:
         brew install robotsandpencils/made/xcodes
     - name: Install Simulator
       shell: bash
-      run: xcodes runtimes install 'iOS ${{ inputs.ios_version }}'
+      run: sudo xcodes runtimes install 'iOS ${{ inputs.ios_version }}'

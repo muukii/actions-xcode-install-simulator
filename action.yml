@@ -8,15 +8,20 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Cache Primes
-      id: cache-primes
+    - name: Cache
       uses: actions/cache@v3
       with:
         path: "./runtimes-archive"
         key: ${{ runner.os }}-runtimes-${{ inputs.ios_version }}
+    - name: Cache
+      uses: actions/cache@v3
+      with:
+        path: "~/Downloads"
+        key: ${{ runner.os }}-runtimes-downloads-${{ inputs.ios_version }}        
     - name: Install Xcodes
       shell: bash
       run: |
+        brew install aria2
         brew tap robotsandpencils/made
         brew install robotsandpencils/made/xcodes
     - name: Install Simulator

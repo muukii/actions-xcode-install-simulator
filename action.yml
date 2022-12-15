@@ -9,8 +9,10 @@ runs:
   using: "composite"
   steps:
     - name: Install Xcodes
-      shell: |
+      shell: bash
+      run: |
         brew tap robotsandpencils/made
         brew install robotsandpencils/made/xcodes
     - name: Install Simulator
-      shell: xcodes runtimes install 'iOS ${{ inputs.ios_version }}'
+      shell: bash
+      run: xcodes runtimes install 'iOS ${{ inputs.ios_version }}'

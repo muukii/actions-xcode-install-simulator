@@ -1,0 +1,16 @@
+name: 'Xcode Install Simulator'
+description: 'Installs simulator for Xcode developers'
+inputs:
+  ios_version: 
+    description: 'Version specifier'
+    required: true
+    
+runs:
+  using: "composite"
+  steps:
+    - name: Install Xcodes
+      run: |
+        brew tap robotsandpencils/made
+        brew install robotsandpencils/made/xcodes
+    - name: Install Simulator
+      run: xcodes runtimes install 'iOS ${{ inputs.ios_version }}'
